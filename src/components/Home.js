@@ -19,20 +19,21 @@ const Home = () => {
 
   useEffect(() => {
     getCount();
-  }, [totalMinted]);
+  }, []);
 
   const getCount = async () => {
     const count = await contract.count();
     setTotalMinted(parseInt(count));
   };
-  console.log("🚀 ~ file: Home.js ~ line 25 ~ getCount ~ Array(totalMinted + 1)", Array(totalMinted + 1));
+  console.log("🚀 ~ file: Home.js ~ line 25 ~ getCount ~ Array(totalMinted + 1)", Array(totalMinted + 1).fill(0));
 
   return (
-    <div>
-      <p>This is the Home page</p>
-      <WalletBalance />
+    <div className="container mx-auto">
+      <div className="flex flex-wrap">
+        <WalletBalance />
+      </div>
       <br />
-      <div>
+      <div className="flex flex-wrap">
         {Array(totalMinted + 1)
           .fill(0)
           .map((_, i) => (

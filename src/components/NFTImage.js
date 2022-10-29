@@ -33,19 +33,23 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
   }
 
   return (
-    <div className="card" style={{ width: "18rem" }}>
-      <img className="card-img-top" src={isMinted ? imageURI : "../../public/logo192.png"} alt="test"></img>
-      <div className="card-body">
+    <div className="card w-96 bg-slate-50 shadow-xl m-4">
+      <figure>
+        <img className="h-64 mt-4" src={isMinted ? imageURI : "/nft-placeholder.png"} alt="test"></img>
+      </figure>
+      <div className="card-body bg-slate-50">
         <h5 className="card-title">ID #{tokenId}</h5>
-        {!isMinted ? (
-          <button className="btn btn-primary" onClick={mintToken}>
-            Mint
-          </button>
-        ) : (
-          <button className="btn btn-secondary" onClick={getURI}>
-            Show Taken URI
-          </button>
-        )}
+        <div className="card-actions justify-end">
+          {!isMinted ? (
+            <button className="btn btn-primary" onClick={mintToken}>
+              Mint
+            </button>
+          ) : (
+            <button className="btn btn-secondary" onClick={getURI}>
+              Show Taken URI
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
