@@ -1,6 +1,8 @@
 import { ethers } from "ethers";
-
+import { useQuery, useQueryClient } from "react-query";
+import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from "react";
+import Table from "./Table";
 
 const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contract }) => {
   const contentId = "Qmechv1kde4hkctCAn5QdRo3JxA4SBxo11rcKQEnJ9Somd";
@@ -8,7 +10,7 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
   const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.png`;
 
   const [isMinted, setIsMinted] = useState(false);
-
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     getMintedStatus();
   }, [isMinted]);
@@ -27,10 +29,19 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
     getMintedStatus();
   };
 
-  async function getURI() {
-    const uri = await contract.tokenURI(tokenId);
-    alert(uri);
-  }
+  const handleClick = () => {
+    //alert("TEst");
+    // manually refetch
+    refetch();
+    //setRefresh(!refresh);
+  };
+
+  const getTraits = async () => {
+    const res = await fetch(`https://gateway.pinata.cloud/ipfs/${metaDataURI}`);
+    return await res.json();
+  };
+
+  const { data, status, refetch } = useQuery("traits", getTraits, { enabled: false });
 
   return (
     <div className="card w-96 bg-slate-50 shadow-xl m-4">
@@ -45,10 +56,15 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
               Mint
             </button>
           ) : (
-            <button className="btn btn-secondary" onClick={getURI}>
-              Show Taken URI
-            </button>
+            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box" onClick={handleClick}>
+              <div className="collapse-title text-xl font-medium">Show Trait</div>
+              <div className="collapse-content">
+                <p>{data && <Table data={data} />}</p>
+              </div>
+            </div>
           )}
+          {status === "loading" && <p>Loading...</p>}
+          {status === "error" && <p>Error</p>}
         </div>
       </div>
     </div>

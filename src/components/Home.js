@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import WalletBalance from "./WalletBalance";
+import { v4 as uuidv4 } from "uuid";
 import NFTImage from "./NFTImage";
 import NftGang from "../artifacts/contracts/MyNFT.sol/NftGang.json";
 
 const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 
 // Get the end user
@@ -25,7 +25,6 @@ const Home = () => {
     const count = await contract.count();
     setTotalMinted(parseInt(count));
   };
-  console.log("🚀 ~ file: Home.js ~ line 25 ~ getCount ~ Array(totalMinted + 1)", Array(totalMinted + 1).fill(0));
 
   return (
     <div className="container mx-auto">
@@ -37,7 +36,7 @@ const Home = () => {
         {Array(totalMinted + 1)
           .fill(0)
           .map((_, i) => (
-            <div key={i}>
+            <div key={"home" + i} className={i}>
               <NFTImage tokenId={i} getCount={getCount} contractAddress={contractAddress} provider={provider} signer={signer} contract={contract} />
             </div>
           ))}
