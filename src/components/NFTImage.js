@@ -15,7 +15,6 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
 
   const getMintedStatus = async () => {
     const result = await contract.isContentOwned(metaDataURI);
-    console.log("getMintedStatus - ", result);
     setIsMinted(result);
   };
 
@@ -47,7 +46,7 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
       <div className="card-body bg-slate-50">
         <h5 className="card-title">ID #{tokenId}</h5>
         <div className="card-actions justify-end">
-          <p>{data.description}</p>
+          <p>{data && data.description}</p>
           {!isMinted ? (
             <button className="btn btn-primary" onClick={mintToken}>
               Mint

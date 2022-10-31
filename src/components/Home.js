@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import WalletBalance from "./WalletBalance";
-import { v4 as uuidv4 } from "uuid";
 import NFTImage from "./NFTImage";
 import NftGang from "../artifacts/contracts/MyNFT.sol/NftGang.json";
 
@@ -16,10 +15,11 @@ const contract = new ethers.Contract(contractAddress, NftGang.abi, signer);
 
 const Home = () => {
   const [totalMinted, setTotalMinted] = useState(0);
+  console.log("🚀 ~ file: Home.js ~ line 19 ~ Home ~ totalMinted", totalMinted);
 
   useEffect(() => {
     getCount();
-  }, []);
+  }, [totalMinted]);
 
   const getCount = async () => {
     const count = await contract.count();
@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap m-4">
         <WalletBalance />
       </div>
       <br />

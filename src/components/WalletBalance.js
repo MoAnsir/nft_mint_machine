@@ -13,9 +13,9 @@ const WalletBalance = () => {
 
   return (
     <div>
-      <p>Your wallet balance {balance}</p>
-      <button className="btn btn-secondary" onClick={() => getBalance()}>
-        Click me
+      <p className="py-2">Your wallet balance {balance}</p>
+      <button className="btn btn-primary" onClick={() => getBalance()}>
+        Check Balance
       </button>
     </div>
   );
