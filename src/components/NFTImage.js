@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import React, { useEffect, useState } from "react";
 import Table from "./Table";
 
@@ -9,7 +9,6 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
   const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.png`;
 
   const [isMinted, setIsMinted] = useState(false);
-  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     getMintedStatus();
   }, [isMinted]);
@@ -29,10 +28,8 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
   };
 
   const handleClick = () => {
-    //alert("TEst");
     // manually refetch
     refetch();
-    //setRefresh(!refresh);
   };
 
   const getTraits = async () => {
@@ -50,16 +47,15 @@ const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contra
       <div className="card-body bg-slate-50">
         <h5 className="card-title">ID #{tokenId}</h5>
         <div className="card-actions justify-end">
+          <p>{data.description}</p>
           {!isMinted ? (
             <button className="btn btn-primary" onClick={mintToken}>
               Mint
             </button>
           ) : (
-            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box" onClick={handleClick}>
-              <div className="collapse-title text-xl font-medium">Show Trait</div>
-              <div className="collapse-content">
-                <p>{data && <Table data={data} />}</p>
-              </div>
+            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box w-full" onClick={handleClick}>
+              <div className="collapse-title text-xl font-medium">NFT Traits</div>
+              <div className="collapse-content p-0">{data && <Table data={data} />}</div>
             </div>
           )}
           {status === "loading" && <p>Loading...</p>}
