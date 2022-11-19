@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Table from "./Table";
 
 const NFTImage = ({ tokenId, getCount, contractAddress, provider, signer, contract }) => {
-  const contentId = "Qmechv1kde4hkctCAn5QdRo3JxA4SBxo11rcKQEnJ9Somd";
+  const contentId = "Qmechv1kde4hkctCAn5QdRo3JxA4SBxo11rcKQEnJ9Somd"; //CID on the IPFS on Pinata site
   const metaDataURI = `${contentId}/${tokenId}.json`;
   const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.png`;
 

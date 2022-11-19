@@ -22,6 +22,6 @@ module.exports = {
     artifacts: "./src/artifacts",
   },
   etherscan: {
-    apiKey: "622DJGRUD6SIW9TEFGJIPTPDP63V7QF5GA",
+    apiKey: "YOUR KEY HERE",
   },
 };
