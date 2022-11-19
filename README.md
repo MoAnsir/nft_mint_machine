@@ -1,7 +1,7 @@
 # NFT mint on Etherum
 
 The aim for this project was to create an NFT mint machine. You will connect to a Eth test network and you can mint NFT using test token.
-Images and the meta data fro the NFT's is stored in IFPS Pinata.
+Images and the meta data for the NFT's is stored in IFPS Pinata.
 
 <br />
 <img src="./public/nft.PNG" width="350">
