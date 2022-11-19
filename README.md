@@ -1,17 +1,8 @@
 # NFT mint on Etherum
 
-The aim for this project was to create an investment pot tracker that will allow users to make payments into their investment pots which there are 3 of. The following is a list of what the user can do:
-* Users have 3 pots that they can put money into. They can select them from the hamburger icon in the top left
+The aim for this project was to create an NFT mint machine. You will connect to a Eth test network and you can mint NFT using test token.
+Images and the meta data fro the NFT's is stored in IFPS Pinata.
 
-* Users are able to input the minimum of £50. A info toast is displayed if the user enters an amount lower than £50.
-
-* After a successful submission there is a message stating how much was put in and to which pot.
-
-* How much is remaining in the ISA allowance. If they have gone over their allowance.
-There are also 3 quick add buttons for the amounts of 800, 1000 and 1200
-
-* If the user enters the same amount into the input box twice and submits the amounts successfully then the last button amount "1200" will be updated with the amount entered twice.
-* There is also a light/dark button on the top right. This changes the theme for the application.
 <br />
 <img src="./public/nft.PNG" width="350">
 
